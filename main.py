@@ -15,8 +15,8 @@ import torchvision.transforms as transforms
 from torchvision.models import resnet50
 
 from dataset import OmniglotReactionTimeDataset
-from psychloss import PsychCrossEntropyLoss
-from psychloss import AccPsychCrossEntropyLoss
+from classifiers.psychloss import PsychCrossEntropyLoss
+from classifiers.psychloss import AccPsychCrossEntropyLoss
 
 # critical args
 parser = argparse.ArgumentParser(description='Training Psych Loss.')
