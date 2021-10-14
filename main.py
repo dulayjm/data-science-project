@@ -15,8 +15,7 @@ import torchvision.transforms as transforms
 from torchvision.models import resnet50
 
 from dataset import OmniglotReactionTimeDataset
-from classifiers.psychloss import PsychCrossEntropyLoss
-from classifiers.psychloss import AccPsychCrossEntropyLoss
+from classifiers.helpers.psychloss import AccPsychCrossEntropyLoss, PsychCrossEntropyLoss
 
 # critical args
 parser = argparse.ArgumentParser(description='Training Psych Loss.')
@@ -50,8 +49,8 @@ parser.add_argument('--use_neptune', type=bool, default=False,
 
 args = parser.parse_args()
 
-assert args.dataset_type != None, 'please specify dataset type'
-assert args.task != None, 'please specify task'
+assert args.dataset_type is not None, 'please specify dataset type'
+assert args.task is not None, 'please specify task'
 
 dataset = None
 train_transform = transforms.Compose([
@@ -76,7 +75,7 @@ dataset_size = len(dataset)
 indices = list(range(dataset_size))
 split = int(np.floor(validation_split * dataset_size))
 
-if shuffle_dataset :
+if shuffle_dataset:
     # np.random.seed(1)
     np.random.shuffle(indices)
 train_indices, val_indices = indices[split:], indices[:split]
@@ -89,8 +88,6 @@ train_loader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size,
                                         sampler=train_sampler)
 validation_loader = torch.utils.data.DataLoader(dataset, batch_size=args.batch_size,
                                                 sampler=valid_sampler)
-
-
 
 # convert to numpy array for classical ML techniques
 if args.to_numpy: 

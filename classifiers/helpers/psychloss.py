@@ -43,11 +43,13 @@ def AccPsychCrossEntropyLoss(outputs, targets, psych):
 
     return - torch.sum(outputs)/num_examples
 
+
 def _softmax(x):
     exp_x = torch.exp(x)
     sum_x = torch.sum(exp_x, dim=1, keepdim=True)
 
     return exp_x/sum_x
+
 
 def _log_softmax(x):
     return torch.log(_softmax(x))
