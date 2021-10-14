@@ -9,6 +9,66 @@ import torchvision.transforms as transforms
 
 from sklearn.ensemble import RandomForestClassifier
 
+from torch.utils.data import Dataset
+import os
+import pandas as pd
+import random
+from skimage import io
+
+from PIL import Image, ImageFilter
+
+from torchvision.utils import save_image
+
+class OmniglotReactionTimeDataset(Dataset):
+    """
+    Dataset for omniglot + reaction time data
+
+    Dasaset Structure:
+    label1, label2, real_file, generated_file, reaction time
+    ...
+
+    args:
+    - path: string - path to dataset (should be a csv file)
+    - transforms: torchvision.transforms - transforms on the data
+    """
+
+    def __init__(self, data_file, transforms=None):
+        self.raw_data = pd.read_csv(data_file)
+#         print('raw ', self.raw_data)
+#        for i in range(5):
+#            print('for testing purposes, the item is ', self.raw_data.iloc[0, i])
+#            print('the type of the item is', type(self.raw_data.iloc[0, i]))
+
+        self.transform = transforms
+
+    def __len__(self):
+        return len(self.raw_data)
+
+    def __getitem__(self, idx):
+        label1 = int(self.raw_data.iloc[idx, 0])
+        label2 = int(self.raw_data.iloc[idx, 1])
+        im1name = self.raw_data.iloc[idx, 2]
+        image1 = Image.open(im1name)
+        # save_image(image1, 'sample.png')
+        im2name = self.raw_data.iloc[idx, 3]
+        image2 = Image.open(im2name)
+        
+        rt = self.raw_data.iloc[idx, 4]
+        sigma = self.raw_data.iloc[idx, 5]
+        
+        # just add in the blur for now, parameterize it later, 
+        image1 = image1.filter(ImageFilter.GaussianBlur(radius = sigma))
+
+        if self.transform:
+            image1 = self.transform(image1)
+            image2 = self.transform(image2)
+
+        sample = {'label1': label1, 'label2': label2, 'image1': image1,
+                                            'image2': image2, 'rt': rt, 'acc': sigma}
+
+        return sample
+
+
 if __name__ == '__main__':
 
     transform = transforms.Compose([
@@ -16,8 +76,14 @@ if __name__ == '__main__':
         transforms.ToTensor()
     ])
 
-    dataset = torchvision.datasets.Omniglot(os.getcwd(),
-                                             download=True, transform=transform)
+    # dataset = torchvision.datasets.Omniglot(os.getcwd(),
+    #                                          download=True, transform=transform)
+
+    # working with the 100-class dataset achieved better results
+    # okay you are attempting to load in based upon the directory
+    # you should be loading the csv file to deal with this, and handling stuff appropriately
+    dataset = OmniglotReactionTimeDataset('sigma_dataset.csv', 
+                transforms=transform)
 
     validation_split = .2
     shuffle_dataset = True
@@ -41,7 +107,9 @@ if __name__ == '__main__':
                                                     sampler=valid_sampler)
 
     dataiter = iter(train_loader)
-    X, y = dataiter.next()
+    sample = dataiter.next()
+    X = sample['image1']
+    y = sample['label1']
 
     X = X.permute(1,2,3,0)
 
@@ -52,7 +120,10 @@ if __name__ == '__main__':
     print('y.shape', y.shape)
 
     dataiter = iter(validation_loader)
-    X_test, y_test = dataiter.next()
+    sample_test = dataiter.next()
+    X_test = sample_test['image1']
+    y_test = sample_test['label1']
+
 
     X_test = X_test.permute(1,2,3,0)
 
@@ -67,8 +138,7 @@ if __name__ == '__main__':
 
     clf = \
     RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-           max_depth=None, max_features='auto', max_leaf_nodes=None,
-           min_impurity_split=1e-07, min_samples_leaf=1,
+           max_depth=None, max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
            min_samples_split=2, min_weight_fraction_leaf=0.0,
            n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
            verbose=0, warm_start=False)

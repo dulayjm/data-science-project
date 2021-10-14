@@ -1,3 +1,5 @@
 /.vscode/
 /env/
 /classifiers/omniglot-py/
+/omniglot_realfake/
+*.csv
