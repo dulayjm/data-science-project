@@ -12,6 +12,7 @@ from torchvision import transforms
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--data_location", type=str)
+    parser.add_argument("--seed", type=int)
     args = parser.parse_args()
 
     if not (args.data_location and os.path.exists(args.data_location) and os.path.isdir(args.data_location)):
@@ -56,8 +57,7 @@ if __name__ == "__main__":
     recall: float = recall_score(ground_truth, predictions, average='macro')
     f1_score: float = f1_score(ground_truth, predictions, average='macro')
 
-    # TODO: add random seed to result output?
-    print(f"Results:\n"
+    print(f"Results (Seed: {args.seed}):\n"
           f"\t* Accuracy: {accuracy}\n"
           f"\t* Precision: {precision}\n"
           f"\t* Recall: {recall}\n"

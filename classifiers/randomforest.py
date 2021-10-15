@@ -52,11 +52,11 @@ class OmniglotReactionTimeDataset(Dataset):
         # save_image(image1, 'sample.png')
         im2name = self.raw_data.iloc[idx, 3]
         image2 = Image.open(im2name)
-        
+
         rt = self.raw_data.iloc[idx, 4]
         sigma = self.raw_data.iloc[idx, 5]
-        
-        # just add in the blur for now, parameterize it later, 
+
+        # just add in the blur for now, parameterize it later,
         image1 = image1.filter(ImageFilter.GaussianBlur(radius = sigma))
 
         if self.transform:
@@ -82,8 +82,8 @@ if __name__ == '__main__':
     # working with the 100-class dataset achieved better results
     # okay you are attempting to load in based upon the directory
     # you should be loading the csv file to deal with this, and handling stuff appropriately
-    dataset = OmniglotReactionTimeDataset('sigma_dataset.csv', 
-                transforms=transform)
+    dataset = OmniglotReactionTimeDataset('../sigma_dataset.csv',
+                                          transforms=transform)
 
     validation_split = .2
     shuffle_dataset = True

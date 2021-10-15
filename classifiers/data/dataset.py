@@ -8,11 +8,12 @@ from PIL import Image, ImageFilter
 
 from torchvision.utils import save_image
 
+
 class OmniglotReactionTimeDataset(Dataset):
     """
     Dataset for omniglot + reaction time data
 
-    Dasaset Structure:
+    Dataset Structure:
     label1, label2, real_file, generated_file, reaction time
     ...
 
