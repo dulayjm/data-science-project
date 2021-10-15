@@ -2,13 +2,14 @@ import os
 
 from argparse import ArgumentParser
 from heapq import nlargest
-from typing import Callable
+from typing import Callable, Union
 
 from torch.nn import CosineSimilarity
 from torchvision.datasets import Omniglot
 from torchvision import transforms
 
 from helpers.full_omniglot import FullOmniglot
+from helpers.stratified_handler import StratifiedKFoldHandler
 
 # Constants:
 MIN_NEIGHBORS: int = 1
@@ -24,6 +25,7 @@ if __name__ == "__main__":
     parser.add_argument("--shuffle", type=bool)
     parser.add_argument("--data_location", type=str)
     args = parser.parse_args()
+    # TODO: investigate subparsers?
 
     # We perform data validation for various options here:
 
@@ -32,8 +34,13 @@ if __name__ == "__main__":
     else:
         raise ValueError("Invalid distance type given. Please try again.")
 
-    if args.split <= 0.0 or args.split >= 1.0:
-        raise ValueError("Invalid split percentage. Please provide a value within the range of (0, 1).")
+    if args.split_type == "random":
+        if args.split <= 0.0 or args.split >= 1.0:
+            raise ValueError("Invalid split percentage. Please provide a value within the range of (0, 1).")
+    elif args.split_type == "stratified":
+        if not args.split.is_integer() or args.split <= 1:
+            raise ValueError("Invalid number of folds. Please provide a value greater than one "
+                             "and smaller than the data size.")
 
     if not (args.data_location and os.path.exists(args.data_location) and os.path.isdir(args.data_location)):
         data_location: str = os.getcwd()
@@ -44,20 +51,14 @@ if __name__ == "__main__":
     transform = transforms.Compose([
         transforms.ToTensor()
     ])
-    # background_dataset = Omniglot(data_location, background=True, download=True, transform=transform)
-    #
-    # unique_labels: int = len([label for image, label in background_dataset])
-    #
-    # target_transform = transforms.Compose([
-    #     lambda value: value + len(unique([label for image, label in background_dataset])) + 1
-    # ])
-    # evaluation_dataset = Omniglot(data_location, background=False, download=True, transform=transform,
-    #                               target_transform=target_transform)
 
     full_dataset = FullOmniglot(data_location, transform=transform)
 
     # First, we divide up the data into its component parts.
-    ...  # TODO: implement stratified .
+    if args.split_type == "stratified":
+        folds = [fold for fold in StratifiedKFoldHandler(full_dataset, int(args.split))]
+    else:
+        raise NotImplementedError("Random sampling has not yet been implemented for this task.")
 
     # Once we have the training and the test data, we can begin the algorithm.
     # In particular, we use the distance_function to compute distance between each item.
