@@ -59,7 +59,10 @@ if __name__ == "__main__":
     # TODO: investigate subparsers?
 
     if args.seed:
-        seed(args.seed)
+        if args.seed >= 0:
+            seed(args.seed)
+        else:
+            raise ValueError("Invalid seed. Please try again.")
 
     # We perform data validation for various options here:
 
