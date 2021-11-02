@@ -13,7 +13,7 @@ from torch.utils.data import Dataset
 import os
 import pandas as pd
 import random
-from skimage import io
+from skimage impoart io
 
 from PIL import Image, ImageFilter
 
