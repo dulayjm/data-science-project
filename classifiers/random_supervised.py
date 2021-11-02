@@ -10,7 +10,7 @@ from tqdm import tqdm
 
 from data.dataset import OmniglotReactionTimeDataset
 from data.full_omniglot import FullOmniglot
-from helpers.stratified_handler import StratifiedKFoldHandler
+from helpers.stratified_sampler import StratifiedKFoldSampler
 from helpers.statistical_functions import *
 
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     print(f"Settings: Data Source - {args.data_source}; "
           f"Seed: {args.seed if args.seed else 'None'}; "
-          f"Split Type: {args.split_type};"
+          f"Split Type: {args.split_type}; "
           f"Split Value: {args.split_value if args.split_value else 'None'}")
 
     if args.seed:
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     # TODO: add this to perform random trials under stratified condition
     if args.split_type == "stratified":
-        folds = [indices for fold, indices in StratifiedKFoldHandler(dataset, int(args.split_value))]
+        folds = [fold for fold in StratifiedKFoldSampler(dataset, int(args.split_value))]
 
     # Accumulate the labels:
     # TODO: there is an assumption here that "stratified" contains evenly-split data throughout all folds.
@@ -74,6 +74,7 @@ if __name__ == "__main__":
     if args.split_type == "stratified" and folds is not None:
         accuracies, precisions, recalls, f1_scores = [], [], [], []
         for fold_number, fold in tqdm(enumerate(folds, start=1)):
+            print(fold)
             for index in fold:
                 predicted_label: int = choice(labels)
                 predictions.append(predicted_label)

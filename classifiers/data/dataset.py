@@ -12,9 +12,11 @@ from torchvision.utils import save_image
 class OmniglotReactionTimeDataset(Dataset):
     """
     Dataset for omniglot + reaction time data
-    Dasaset Structure:
+
+    Dataset Structure:
     label1, label2, real_file, generated_file, reaction time
     ...
+
     args:
     - path: string - path to dataset (should be a csv file)
     - transforms: torchvision.transforms - transforms on the data
@@ -44,7 +46,7 @@ class OmniglotReactionTimeDataset(Dataset):
         rt = self.raw_data.iloc[idx, 4]
         sigma = self.raw_data.iloc[idx, 5]
 
-        # just add in the blur for now, parameterize it later,
+        # just add in the blur for now, parameterize it later
         image1 = image1.filter(ImageFilter.GaussianBlur(radius=sigma))
 
         if self.transform:

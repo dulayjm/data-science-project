@@ -49,7 +49,7 @@ def display_fold_statistics(seed: int, fold_count: int, accuracy_distribution: D
                             precision_distribution: Distribution, recall_distribution: Distribution,
                             f1_distribution: Distribution) -> None:
     print(f"Overall Results (Seed: {seed}; Folds: {fold_count}):\n"
-          f"\t* Accuracies: {accuracy_distribution.mean} ± {accuracy_distribution.standard_deviation}\n"
-          f"\t* Precisions: {precision_distribution.mean} ± {precision_distribution.standard_deviation}\n"
-          f"\t* Recalls: {recall_distribution.mean} ± {recall_distribution.standard_deviation}\n"
-          f"\t* F1 Scores: {f1_distribution.mean} ± {f1_distribution.standard_deviation}")
+          f"\t* Accuracies: {accuracy_distribution.mean} +/- {accuracy_distribution.standard_deviation}\n"
+          f"\t* Precisions: {precision_distribution.mean} +/- {precision_distribution.standard_deviation}\n"
+          f"\t* Recalls: {recall_distribution.mean} +/- {recall_distribution.standard_deviation}\n"
+          f"\t* F1 Scores: {f1_distribution.mean} +/- {f1_distribution.standard_deviation}")

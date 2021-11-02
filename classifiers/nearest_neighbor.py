@@ -14,7 +14,7 @@ from tqdm import tqdm
 
 from data.full_omniglot import FullOmniglot
 from data.dataset import OmniglotReactionTimeDataset
-from helpers.stratified_handler import StratifiedKFoldHandler
+from helpers.stratified_sampler import StratifiedKFoldSampler
 
 # Constants:
 MIN_NEIGHBORS: int = 1
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     # Then, we name some set as the test set and perform the algorithm.
     # Finally, we determine how well the algorithm did.
     if args.split_type == "stratified":
-        folds = [indices for fold, indices in StratifiedKFoldHandler(dataset, int(args.split))]
+        folds = [fold for fold in StratifiedKFoldSampler(dataset, int(args.split))]
         training_set: list = [index for fold in folds[0:int(args.split)] for index in fold]
         test_set: list = folds[-1]
         ground_truth: list = []

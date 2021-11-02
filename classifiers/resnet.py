@@ -3,75 +3,18 @@ import os
 import numpy as np
 import scipy.io
 import torch
-from torch.utils.data.sampler import SubsetRandomSampler
 import torchvision
 import torchvision.transforms as transforms
 
-from sklearn.ensemble import RandomForestClassifier
+from torch.utils.data.sampler import SubsetRandomSampler
 
-from torch.utils.data import Dataset
-import os
-import pandas as pd
-import random
-# from skimage impoart io
-
-from PIL import Image, ImageFilter
-
-from torchvision.utils import save_image
-
-class OmniglotReactionTimeDataset(Dataset):
-    """
-    Dataset for omniglot + reaction time data
-
-    Dasaset Structure:
-    label1, label2, real_file, generated_file, reaction time
-    ...
-
-    args:
-    - path: string - path to dataset (should be a csv file)
-    - transforms: torchvision.transforms - transforms on the data
-    """
-
-    def __init__(self, data_file, transforms=None):
-        self.raw_data = pd.read_csv(data_file)
-#         print('raw ', self.raw_data)
-#        for i in range(5):
-#            print('for testing purposes, the item is ', self.raw_data.iloc[0, i])
-#            print('the type of the item is', type(self.raw_data.iloc[0, i]))
-
-        self.transform = transforms
-
-    def __len__(self):
-        return len(self.raw_data)
-
-    def __getitem__(self, idx):
-        label1 = int(self.raw_data.iloc[idx, 0])
-        label2 = int(self.raw_data.iloc[idx, 1])
-        im1name = self.raw_data.iloc[idx, 2]
-        image1 = Image.open(im1name)
-        # save_image(image1, 'sample.png')
-        im2name = self.raw_data.iloc[idx, 3]
-        image2 = Image.open(im2name)
-        
-        rt = self.raw_data.iloc[idx, 4]
-        sigma = self.raw_data.iloc[idx, 5]
-        
-        # just add in the blur for now, parameterize it later, 
-        image1 = image1.filter(ImageFilter.GaussianBlur(radius = sigma))
-
-        if self.transform:
-            image1 = self.transform(image1)
-            image2 = self.transform(image2)
-
-        sample = {'label1': label1, 'label2': label2, 'image1': image1,
-                                            'image2': image2, 'rt': rt, 'acc': sigma}
-
-        return sample
+from data.dataset import OmniglotReactionTimeDataset
+from helpers.statistical_functions import calculate_base_statistics, display_base_statistics
 
 
 if __name__ == '__main__':
-
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    seed: int = torch.random.seed()
 
     transform = transforms.Compose([
         # you can add other transformations in this list
@@ -84,8 +27,7 @@ if __name__ == '__main__':
     # working with the 100-class dataset achieved better results
     # okay you are attempting to load in based upon the directory
     # you should be loading the csv file to deal with this, and handling stuff appropriately
-    dataset = OmniglotReactionTimeDataset('sigma_dataset.csv', 
-                transforms=transform)
+    dataset = OmniglotReactionTimeDataset('sigma_dataset.csv', transforms=transform)
 
     validation_split = .2
     shuffle_dataset = True
@@ -94,7 +36,7 @@ if __name__ == '__main__':
     indices = list(range(dataset_size))
     split = int(np.floor(validation_split * dataset_size))
 
-    if shuffle_dataset :
+    if shuffle_dataset:
         # np.random.seed(1)
         np.random.shuffle(indices)
     train_indices, val_indices = indices[split:], indices[:split]
@@ -103,20 +45,18 @@ if __name__ == '__main__':
     train_sampler = SubsetRandomSampler(train_indices)
     valid_sampler = SubsetRandomSampler(val_indices)
 
-    train_loader = torch.utils.data.DataLoader(dataset, batch_size=16, 
-                                            sampler=train_sampler)
+    train_loader = torch.utils.data.DataLoader(dataset, batch_size=16,
+                                               sampler=train_sampler)
     validation_loader = torch.utils.data.DataLoader(dataset, batch_size=16,
                                                     sampler=valid_sampler)
 
-    #### Model work
-    model = torchvision.models.resnet50(pretrained=True)
-
+    # Model Work
+    model = torchvision.models.resnet50(pretrained=True, progress=True)
+    model.train()
 
     # loss function and optimizer
     criterion = torch.abs_nn.CrossEntropyLoss()
     optim = torch.optim.SGD(model.parameters(), lr=0.001, momentum=0.9)
-
-
 
     for epoch in range(2):
         running_loss = 0.0
@@ -173,18 +113,8 @@ if __name__ == '__main__':
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
 
-
     print('Finished Training')
-
-
-
-
-
-
-
-
-
-
+    model.eval()
 
     # dataiter = iter(train_loader)
     # sample = dataiter.next()
@@ -225,7 +155,7 @@ if __name__ == '__main__':
 
     # clf.fit(X, y)
 
-
-    from sklearn.metrics import accuracy_score
-    preds = clf.predict(X_test)
-    print("Accuracy:", accuracy_score(y_test,preds))
+    # TODO: get ground truth values, insert test values
+    preds: list = model(...)
+    accuracy, precision, recall, f1_score = calculate_base_statistics(preds, ...)
+    display_base_statistics(seed, accuracy, precision, recall, f1_score)
