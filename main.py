@@ -1,21 +1,16 @@
 import argparse
 import os
-import time
 
 from torch.utils.data import dataset
 
-import neptune
 import numpy as np
 from numpy.random.mtrand import seed
 import torch
-import torch.nn as nn
 import torchvision
 from torch.utils.data.sampler import SubsetRandomSampler
 import torchvision.transforms as transforms
-from torchvision.models import resnet50
 
-from dataset import OmniglotReactionTimeDataset
-from classifiers.helpers.psychloss import AccPsychCrossEntropyLoss, PsychCrossEntropyLoss
+from classifiers.data.dataset import OmniglotReactionTimeDataset
 
 # critical args
 parser = argparse.ArgumentParser(description='Training Psych Loss.')
