@@ -17,6 +17,8 @@ from skimage import io
 
 from PIL import Image, ImageFilter
 
+from sklearn.metrics import f1_score
+
 from torchvision.utils import save_image
 
 class OmniglotReactionTimeDataset(Dataset):
@@ -149,3 +151,5 @@ if __name__ == '__main__':
     from sklearn.metrics import accuracy_score
     preds = clf.predict(X_test)
     print("Accuracy:", accuracy_score(y_test,preds))
+
+    print("F1 score:", f1_score(y_test,preds,zero_division=1))
