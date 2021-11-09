@@ -2,7 +2,7 @@ import os
 
 from argparse import ArgumentParser
 from random import choice, seed
-from typing import List
+from typing import Callable, List, Union
 
 from torchvision.datasets import Omniglot
 from torchvision import transforms
@@ -10,13 +10,14 @@ from tqdm import tqdm
 
 from data.dataset import OmniglotReactionTimeDataset
 from data.full_omniglot import FullOmniglot
+from data.data_preprocessors import preprocess_reaction_time_data
 from helpers.stratified_sampler import StratifiedKFoldSampler
 from helpers.statistical_functions import *
 
 
 if __name__ == "__main__":
     parser = ArgumentParser()
-    parser.add_argument("--data_source", type=str, choices=["full", "background", "evaluation", "reaction-time"],
+    parser.add_argument("--data-source", type=str, choices=["full", "background", "evaluation", "reaction-time"],
                         default="full")
     parser.add_argument("--seed", type=int)
     parser.add_argument("--split-type", type=str, choices=["none", "random", "stratified"], default="none")
@@ -39,6 +40,7 @@ if __name__ == "__main__":
     ])
 
     # Retrieve data from dataset:
+    data_preprocessor: Union[Callable, None] = None
     if args.data_source == "full":
         dataset = FullOmniglot(os.getcwd(), transform=transform)
     elif args.data_source == "background":
@@ -46,13 +48,16 @@ if __name__ == "__main__":
     elif args.data_source == "evaluation":
         dataset = Omniglot(os.getcwd(), background=False, transform=transform)
     elif args.data_source == "reaction-time":
-        dataset = OmniglotReactionTimeDataset('../sigma_dataset.csv', transforms=transform)
+        dataset = preprocess_reaction_time_data(
+            OmniglotReactionTimeDataset('../sigma_dataset.csv', transforms=transform)
+        )
     else:
         raise ValueError("Appropriate dataset not specified. Please try again with one of the possible options.")
 
     # TODO: add this to perform random trials under stratified condition
     if args.split_type == "stratified":
-        folds = [fold for fold in StratifiedKFoldSampler(dataset, int(args.split_value))]
+        folds = [fold for fold in
+                 StratifiedKFoldSampler(dataset, int(args.split_value))]
 
     # Accumulate the labels:
     # TODO: there is an assumption here that "stratified" contains evenly-split data throughout all folds.
@@ -74,7 +79,6 @@ if __name__ == "__main__":
     if args.split_type == "stratified" and folds is not None:
         accuracies, precisions, recalls, f1_scores = [], [], [], []
         for fold_number, fold in tqdm(enumerate(folds, start=1)):
-            print(fold)
             for index in fold:
                 predicted_label: int = choice(labels)
                 predictions.append(predicted_label)

@@ -8,13 +8,11 @@ from torch.utils.data.sampler import SubsetRandomSampler
 import torchvision
 import torchvision.transforms as transforms
 
-from sklearn.ensemble import RandomForestClassifier
-
 from torch.utils.data import Dataset
 import os
 import pandas as pd
 import random
-# from skimage impoart io
+# from skimage import io
 
 from PIL import Image, ImageFilter
 
@@ -69,8 +67,8 @@ class OmniglotReactionTimeDataset(Dataset):
 
         return sample
 
-class SiameseNetwork(torch.nn.Module):
 
+class SiameseNetwork(torch.nn.Module):
     def __init__(self):
         super(SiameseNetwork, self).__init__()
         self.conv = nn.Sequential(
@@ -102,7 +100,6 @@ class SiameseNetwork(torch.nn.Module):
         out = self.out(dis)
         #  return self.sigmoid(out)
         return out
-
 
 
 if __name__ == '__main__':
