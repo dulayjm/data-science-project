@@ -1,49 +1,52 @@
 from random import sample
+from typing import List
 
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, Sampler
 
 
-# Took a lot of inspiration from PyTorch's Sampler here;
-# should this be treated like a BatchSampler?
+# Trying to treat the below like BatchSampler.
 # https://pytorch.org/docs/1.8.0/_modules/torch/utils/data/sampler.html#BatchSampler
 
-class StratifiedKFoldHandler:
+class StratifiedKFoldSampler(Sampler[List[int]]):
     def __init__(self, data_source: Dataset, num_folds: int = 10):
-        # Ideally, I'd like to get rid of this value being stored here
-        # unless it ends up being used in a more permanent fashion.
-        self.data_source = data_source
+        # The typing complaint here is of no concern; Dataset is Sized for all of our uses.
+        super().__init__(data_source)  # type: ignore
         self.num_folds = num_folds
-        self.folds: dict = self._compute_stratified_folds()
+        self.shifts = 0
+        self.folds: List[List[int]] = self._compute_stratified_folds(data_source)
 
     # Since this is meant for k-fold cross-validation,
     # we don't want to mess with the order of sampling here.
     def __iter__(self):
-        return iter(self.folds.items())
+        for fold in self.folds:
+            yield fold
 
     def __len__(self):
-        return sum([len(indices) for indices in self.folds.values()])
+        return sum([len(indices) for indices in self.folds])
 
-    def _get_data_by_label(self) -> dict:
+    @staticmethod
+    def _get_data_by_label(data_source) -> dict:
         data_by_label: dict = {}
         data_index: int = 0
-        for item, label in self.data_source:
+        for item, label in data_source:
             if not data_by_label.get(label):
                 data_by_label[label] = []
             data_by_label[label].append(data_index)
             data_index += 1
         return data_by_label
 
-    def _compute_stratified_folds(self) -> dict:
-        folds: dict = {}
-        label_frequencies: dict = self._get_data_by_label()
+    def _compute_stratified_folds(self, data_source: Dataset) -> List[List[int]]:
+        folds: List[List[int]] = []
+        label_frequencies: dict = self._get_data_by_label(data_source)  # type: ignore
+        # We pre-populate the data structure with empty lists.
         for fold_number in range(0, self.num_folds):
-            folds[fold_number] = []
+            folds.append([])
 
         for label, indices in label_frequencies.items():
             # Here, we sample from the data in terms of its strata without replacement.
             # We do this via indices.
             fold_minimum: int = len(indices) // self.num_folds
-            fold_sample_count: list = [fold_minimum for i in range(0, self.num_folds)]
+            fold_sample_count: list = [fold_minimum for _ in range(0, self.num_folds)]
             fold_remainder: int = len(indices) % self.num_folds
             if fold_remainder > 0:
                 # We favor folds that have less items before randomly choosing.
@@ -52,8 +55,8 @@ class StratifiedKFoldHandler:
                 # It examines folds, generates a list of those with lower-than-maximum lengths,
                 # and gives all those which are less than the maximum additional samples
                 # (if such samples are available to be given).
-                current_maximum_fold_size: int = max([len(indices) for indices in folds.values()])
-                lesser_folds: list = [fold for fold, indices in folds.items()
+                current_maximum_fold_size: int = max([len(indices) for indices in folds])
+                lesser_folds: list = [fold for fold, indices in enumerate(folds)
                                       if len(indices) < current_maximum_fold_size]
 
                 lesser_fold_sample_count: int = min([len(lesser_folds), fold_remainder])
@@ -65,7 +68,7 @@ class StratifiedKFoldHandler:
                 # If there are more folds and all fold counts are now equal,
                 # then we sample randomly from all folds.
                 if fold_remainder > 0:
-                    winning_folds: list = sample(folds.keys(), fold_remainder)
+                    winning_folds: list = sample([fold for fold in range(0, self.num_folds)], fold_remainder)
                     for fold in winning_folds:
                         fold_sample_count[fold] += 1
 
@@ -77,3 +80,8 @@ class StratifiedKFoldHandler:
                 folds[fold].extend(data_sample)
 
         return folds
+
+    def shift(self):
+        shifting_fold: List[int] = self.folds.pop(0)
+        self.folds.append(shifting_fold)
+        self.shifts += 1
