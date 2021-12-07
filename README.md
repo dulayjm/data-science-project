@@ -34,5 +34,10 @@ sample = {'label1': label1, 'label2': label2, 'image1': image1,
                     'image2': image2, 'rt': rt, 'acc': sigma} 
 ```
 where the labels are the labels of the two respective images, images are torch tensor representations of the imagse, rt is the associated psychophysical reaction time with the images, and sigma is the blurring parameter used for the standard sklearn Gaussian blur. The method also has some commented out parts where you can mess around with blurring one of the images.
+`
+## Usage on Neural Network Classifiers
 
-## TODO: Usage on running each classifier
+- Navigate to the `classifiers` folder
+- run `python3 <classifier_name> 
+- NOTE: you can adjust the hyperparameters in hhe run script
+- NOTE: you can run this on a GPU - either on a local client, the CRC, or Google Collab
