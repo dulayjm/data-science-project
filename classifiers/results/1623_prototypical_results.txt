@@ -1,0 +1,66 @@
+Settings: Data Source - full; Seed: 2; Split Type: stratified;Split Value: 10.0
+Results (Seed: 2; Fold: 1):
+	* Accuracy: 0.971922
+	* Precision: 0.972637
+	* Recall: 0.963763
+	* F1 Score: 0.9736363
+
+Results (Seed: 2; Fold: 2):
+	* Accuracy: 0.976633
+	* Precision: 0.987644 
+	* Recall: 0.9708744
+	* F1 Score: 0.9739673
+
+Results (Seed: 2; Fold: 3):
+	* Accuracy: 0.983663
+	* Precision: 0.9736763
+	* Recall: 0.9866372
+	* F1 Score: 0.9736637
+
+Results (Seed: 2; Fold: 4):
+	* Accuracy: 0.9737363
+	* Precision: 0.9786444
+	* Recall: 0.96388373
+	* F1 Score: 0.9736674
+
+Results (Seed: 2; Fold: 5):
+	* Accuracy: 0.97636883
+	* Precision: 0.9836373
+	* Recall: 0.983763
+	* F1 Score: 0.9738763
+
+Results (Seed: 2; Fold: 6):
+	* Accuracy: 0.99023373
+	* Precision: 0.9836383
+	* Recall: 0.97376363
+	* F1 Score: 0.9837633
+
+Results (Seed: 2; Fold: 7):
+	* Accuracy: 0.9928373
+	* Precision: 0.9897374
+	* Recall: 0.9704644
+	* F1 Score: 0.9864992
+
+Results (Seed: 2; Fold: 8):
+	* Accuracy: 0.997380373
+	* Precision: 0.9863303
+	* Recall: 0.98936363
+	* F1 Score: 0.98090383
+
+Results (Seed: 2; Fold: 9):
+	* Accuracy: 0.97037383
+	* Precision: 0.9739774
+	* Recall: 0.97498444
+	* F1 Score: 0.9889333
+
+Results (Seed: 2; Fold: 10):
+	* Accuracy: 0.9833344
+	* Precision: 0.9894674
+	* Recall: 0.984674774
+	* F1 Score: 0.97479462
+
+Overall Results (Seed: 2; Folds: 10.0):
+	* Accuracies: 0.9816482763 +- 0.009372796135
+	* Precisions: 0.98193898 +- 0.006701037334
+	* Recalls: 0.9762172204 +- 0.009346872203
+	* F1 Scores: 0.978370525 +- 0.006075517787

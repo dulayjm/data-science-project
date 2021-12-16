@@ -5,7 +5,7 @@ This is a work-in-progress.
 At the current commit, you can load data. Specify `dataset_type=torch` for the default PyTorch class
 for Omniglot (few-shot, 1623 instances) or `dataset_type=custom` for in-house dataset (100 way, psyphy annotations).
 
-## Usage
+## General Usage
 ```
 python3 -m venv env
 source env/bin/activate
@@ -13,7 +13,7 @@ pip3 install -r requirements.txt
 ```
 
 ```
-python3 main.py dataset_type=torch task=svm to_numpy=True
+python3 main.py dataset_type=torch to_numpy=True
 ```
 
 ## Usage on the Custom Dataset
@@ -34,5 +34,14 @@ sample = {'label1': label1, 'label2': label2, 'image1': image1,
                     'image2': image2, 'rt': rt, 'acc': sigma} 
 ```
 where the labels are the labels of the two respective images, images are torch tensor representations of the imagse, rt is the associated psychophysical reaction time with the images, and sigma is the blurring parameter used for the standard sklearn Gaussian blur. The method also has some commented out parts where you can mess around with blurring one of the images.
+`
+## Usage on Neural Network Classifiers
 
-## TODO: Usage on running each classifier
+- Navigate to the `classifiers` folder
+- run `python3 <classifier_name> 
+- NOTE: you can adjust the hyperparameters in the run script
+- NOTE: you can run this on a GPU - either on a local client, the CRC, or Google Collab
+
+#### To test with save models:
+
+Update: call `torch.load(<model_name.mod>)` on the specified model
