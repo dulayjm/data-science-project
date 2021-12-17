@@ -27,6 +27,8 @@ That is, all of the following should be there:
 * `sigma_dataset.csv`, which lists information about `omniglot-realfake` with regard to psychophysically-based research. 
 It is used in the process of loading the `omniglot-realfake` data.
 
+Then, move into the classifiers directory. Some data loaders rely on being in this directory to work at this time.
+
 The five classifier files are as follows:
 * `random_supervised.py`, which contains the random baseline.
 * `nearest_neighbor.py`, which contains the k-Nearest Neighbor classifier.
