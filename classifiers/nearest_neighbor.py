@@ -186,5 +186,3 @@ if __name__ == "__main__":
             # Post-looping for the folds, we calculate and display overall statistics.
             distributions: list = calculate_fold_statistics(accuracies, precisions, recalls, f1_scores)
             display_fold_statistics(args.seed, args.split_value, *distributions)
-    else:
-        raise NotImplementedError("Random sampling has not yet been implemented for this task.")
