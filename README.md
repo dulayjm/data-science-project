@@ -15,8 +15,8 @@ pip3 install -r requirements.txt
 
 After the above, each of the individual files in the classifiers folder can be consulted for its usage.
 All are fitted with command line interfaces. 
-However, they are not necessarily completely set up with every option being able to be changed. 
-Some experimentation was done on a more manual basis and preceded the addition of command lines.
+However, they are not necessarily set up with every possible option able to be changed.
+Some experimentation was done on a more manual and incremental basis that preceded the addition of command line interfaces.
 As a result, the use of datasets in a given context may need slight edits such that 
 they can be probed, examined, and tested.
 
@@ -39,6 +39,8 @@ Other relevant files include:
 * `data/dataset.py`, which contains the OmniglotReactionTimeDataset class (see below for more details).
 * `data/full_omniglot.py`, which contains a class that relates to the complete Omniglot dataset. 
 It was created because the PyTorch versions of the Omniglot dataset only allowed for the retrieval of partial sets.
+* `helpers/fold_splitter.py`, which contains a function that facilitates in the creation of random folds 
+for k-fold cross-validation.
 * `helpers/psychloss.py`, which contains functions can be used in neural networks (or elsewhere)
 which especially pertain to psychophysically-based approaches.
 * `helpers/statistical_functions.py`, which contains various stat-calculating and stat-displaying functions
