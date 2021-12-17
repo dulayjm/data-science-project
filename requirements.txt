@@ -6,3 +6,5 @@ torch
 torchvision
 scipy
 opencv-python
+tqdm
+aenum
