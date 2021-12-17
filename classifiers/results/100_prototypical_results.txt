@@ -59,8 +59,8 @@ Results (Seed: 2; Fold: 10):
 	* Recall: 0.9912112
 	* F1 Score: 0.99787632
 
-Overall Results (Seed: 2; Folds: 10.0):
-	* Accuracies: 0.9991 +- 0.00001
-	* Precisions: 0.9912 +- 0.00021 
-	* Recalls: 0.9992 +- 0.0020
-	* F1 Scores: 0.9990 +- 0.00012
+Overall Results (Seed: 2; Folds: 10):
+	* Accuracies: 0.9866204195 +/- 0.013603144284265166
+	* Precisions: 0.977926865 +/- 0.01080678319724056
+	* Recalls: 0.981260504 +/- 0.029523234442669122
+	* F1 Scores: 0.98876197 +/- 0.006492123295318882

@@ -1,12 +1,12 @@
-from torch.utils.data import Dataset
-import os
+"""
+This file contains the class for the OmniglotReactionTimeDataset,
+an in-house dataset prepared prior to this project.
+"""
+
 import pandas as pd
-import random
-from skimage import io
 
 from PIL import Image, ImageFilter
-
-from torchvision.utils import save_image
+from torch.utils.data import Dataset
 
 
 class OmniglotReactionTimeDataset(Dataset):
@@ -24,11 +24,6 @@ class OmniglotReactionTimeDataset(Dataset):
 
     def __init__(self, data_file, transforms=None):
         self.raw_data = pd.read_csv(data_file)
-        #         print('raw ', self.raw_data)
-        #        for i in range(5):
-        #            print('for testing purposes, the item is ', self.raw_data.iloc[0, i])
-        #            print('the type of the item is', type(self.raw_data.iloc[0, i]))
-
         self.transform = transforms
 
     def __len__(self):
@@ -39,7 +34,6 @@ class OmniglotReactionTimeDataset(Dataset):
         label2 = int(self.raw_data.iloc[idx, 1])
         im1name = self.raw_data.iloc[idx, 2]
         image1 = Image.open(im1name)
-        # save_image(image1, 'sample.png')
         im2name = self.raw_data.iloc[idx, 3]
         image2 = Image.open(im2name)
 
