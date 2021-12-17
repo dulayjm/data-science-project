@@ -1,3 +1,13 @@
+"""
+This file contains the FullOmniglot class,
+which is a modification of the Omniglot class in PyTorch save that it works with the full Omniglot dataset,
+as the full dataset--for whatever reason--was not initially accessible from there.
+Only certain subsets of the Omniglot class were.
+
+The original code can be found here:
+https://pytorch.org/vision/stable/datasets.html?highlight=omniglot#torchvision.datasets.Omniglot
+"""
+
 from os.path import join
 from typing import Any, Callable, List, Optional, Tuple
 

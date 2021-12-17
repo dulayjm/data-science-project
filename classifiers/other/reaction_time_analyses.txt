@@ -1,0 +1,202 @@
+Data Analysis Results:
+Overlap Data:
+	* Class 0:
+		> Average Overlap (with Standard Deviation): 300.30487420046137 +/- 45.12200035325714
+	* Class 1:
+		> Average Overlap (with Standard Deviation): 257.2744411994417 +/- 53.32765842341587
+	* Class 2:
+		> Average Overlap (with Standard Deviation): 148.05602915363025 +/- 26.51927291791977
+	* Class 3:
+		> Average Overlap (with Standard Deviation): 251.608486727518 +/- 51.15298549365957
+	* Class 4:
+		> Average Overlap (with Standard Deviation): 302.0123241789278 +/- 40.64962153103895
+	* Class 5:
+		> Average Overlap (with Standard Deviation): 269.88860186356845 +/- 35.86788864329495
+	* Class 6:
+		> Average Overlap (with Standard Deviation): 180.97634278878695 +/- 41.27122728147363
+	* Class 7:
+		> Average Overlap (with Standard Deviation): 124.25439682237537 +/- 33.372426225263595
+	* Class 8:
+		> Average Overlap (with Standard Deviation): 339.8064237899342 +/- 59.27801425850849
+	* Class 9:
+		> Average Overlap (with Standard Deviation): 306.8208924140172 +/- 55.349850776140826
+	* Class 10:
+		> Average Overlap (with Standard Deviation): 178.08489178400256 +/- 32.66708852020539
+	* Class 11:
+		> Average Overlap (with Standard Deviation): 182.83957995853123 +/- 37.967931025146264
+	* Class 12:
+		> Average Overlap (with Standard Deviation): 317.47566275956495 +/- 56.85503818164372
+	* Class 13:
+		> Average Overlap (with Standard Deviation): 246.19184813439048 +/- 28.254563385485508
+	* Class 14:
+		> Average Overlap (with Standard Deviation): 258.7368772159878 +/- 47.235292657074616
+	* Class 15:
+		> Average Overlap (with Standard Deviation): 288.29848235139735 +/- 37.38204536216077
+	* Class 16:
+		> Average Overlap (with Standard Deviation): 242.6972172263318 +/- 36.829696500830856
+	* Class 17:
+		> Average Overlap (with Standard Deviation): 211.9027216364181 +/- 40.25352117976277
+	* Class 18:
+		> Average Overlap (with Standard Deviation): 274.2234198870802 +/- 33.90313344081785
+	* Class 19:
+		> Average Overlap (with Standard Deviation): 269.68822798043124 +/- 35.25067004970797
+	* Class 20:
+		> Average Overlap (with Standard Deviation): 222.91089871205912 +/- 30.239437535986813
+	* Class 21:
+		> Average Overlap (with Standard Deviation): 330.88756488241575 +/- 39.15296506615878
+	* Class 22:
+		> Average Overlap (with Standard Deviation): 177.33792642569279 +/- 34.17000243034851
+	* Class 23:
+		> Average Overlap (with Standard Deviation): 238.86034754597833 +/- 46.39340796268473
+	* Class 24:
+		> Average Overlap (with Standard Deviation): 328.2779317211882 +/- 49.13880013442515
+	* Class 25:
+		> Average Overlap (with Standard Deviation): 139.7717224734496 +/- 24.25470704924889
+	* Class 26:
+		> Average Overlap (with Standard Deviation): 229.3070684128693 +/- 33.88984239729606
+	* Class 27:
+		> Average Overlap (with Standard Deviation): 187.0171326121564 +/- 26.249855372461113
+	* Class 28:
+		> Average Overlap (with Standard Deviation): 277.5419156694801 +/- 34.793992747439795
+	* Class 29:
+		> Average Overlap (with Standard Deviation): 189.25434600673756 +/- 37.14175289072996
+	* Class 30:
+		> Average Overlap (with Standard Deviation): 243.97044504726188 +/- 38.400265666310425
+	* Class 31:
+		> Average Overlap (with Standard Deviation): 164.84308271318366 +/- 25.172555900540182
+	* Class 32:
+		> Average Overlap (with Standard Deviation): 181.7140979847839 +/- 33.19185193035126
+	* Class 33:
+		> Average Overlap (with Standard Deviation): 214.53141218816796 +/- 38.827126727006174
+	* Class 34:
+		> Average Overlap (with Standard Deviation): 140.53825476441364 +/- 35.68339856987124
+	* Class 35:
+		> Average Overlap (with Standard Deviation): 182.69195372453214 +/- 36.51145537170395
+	* Class 36:
+		> Average Overlap (with Standard Deviation): 312.26819972249007 +/- 31.788704603047165
+	* Class 37:
+		> Average Overlap (with Standard Deviation): 244.53787191720184 +/- 44.20474616411939
+	* Class 38:
+		> Average Overlap (with Standard Deviation): 299.067896901451 +/- 28.060344591360636
+	* Class 39:
+		> Average Overlap (with Standard Deviation): 224.03674397356122 +/- 37.38871632941863
+	* Class 40:
+		> Average Overlap (with Standard Deviation): 191.54303876859748 +/- 25.323765291060944
+	* Class 41:
+		> Average Overlap (with Standard Deviation): 250.5181831973649 +/- 33.55719351424213
+	* Class 42:
+		> Average Overlap (with Standard Deviation): 187.77610558230967 +/- 49.221683886307936
+	* Class 43:
+		> Average Overlap (with Standard Deviation): 256.97777860296026 +/- 39.23120014628688
+	* Class 44:
+		> Average Overlap (with Standard Deviation): 268.18820465939433 +/- 41.034902617979824
+	* Class 45:
+		> Average Overlap (with Standard Deviation): 192.63064109892107 +/- 28.696985542007674
+	* Class 46:
+		> Average Overlap (with Standard Deviation): 108.61402420310915 +/- 13.797377574696043
+	* Class 47:
+		> Average Overlap (with Standard Deviation): 260.56540087421257 +/- 42.442257630739896
+	* Class 48:
+		> Average Overlap (with Standard Deviation): 259.22764108037376 +/- 38.15039680135235
+	* Class 49:
+		> Average Overlap (with Standard Deviation): 212.45275951626442 +/- 45.6345001562827
+	* Class 50:
+		> Average Overlap (with Standard Deviation): 185.14112138543774 +/- 28.5249154174399
+	* Class 51:
+		> Average Overlap (with Standard Deviation): 83.47345729210613 +/- 22.72350651917572
+	* Class 52:
+		> Average Overlap (with Standard Deviation): 155.81614197018877 +/- 29.333627993529934
+	* Class 53:
+		> Average Overlap (with Standard Deviation): 259.2222563287112 +/- 38.48374411437663
+	* Class 54:
+		> Average Overlap (with Standard Deviation): 336.8071006157239 +/- 43.15850623545186
+	* Class 55:
+		> Average Overlap (with Standard Deviation): 151.68046362035884 +/- 22.17475441140476
+	* Class 56:
+		> Average Overlap (with Standard Deviation): 252.80913236732297 +/- 36.203901225725076
+	* Class 57:
+		> Average Overlap (with Standard Deviation): 252.9296414551093 +/- 48.449845178861196
+	* Class 58:
+		> Average Overlap (with Standard Deviation): 156.69796111052318 +/- 37.940868132859485
+	* Class 59:
+		> Average Overlap (with Standard Deviation): 377.9696111168844 +/- 60.209711776978644
+	* Class 60:
+		> Average Overlap (with Standard Deviation): 220.5525997124518 +/- 43.53593822596829
+	* Class 61:
+		> Average Overlap (with Standard Deviation): 117.30084779678934 +/- 24.295146566261913
+	* Class 62:
+		> Average Overlap (with Standard Deviation): 244.93467862455685 +/- 33.41260959792416
+	* Class 63:
+		> Average Overlap (with Standard Deviation): 209.56567043957267 +/- 37.72825353291595
+	* Class 64:
+		> Average Overlap (with Standard Deviation): 238.9992020251751 +/- 39.92378688752015
+	* Class 65:
+		> Average Overlap (with Standard Deviation): 259.9441584362631 +/- 42.85027323080345
+	* Class 66:
+		> Average Overlap (with Standard Deviation): 291.57616733095176 +/- 39.66766989322344
+	* Class 67:
+		> Average Overlap (with Standard Deviation): 219.58492353365017 +/- 32.800732091053355
+	* Class 68:
+		> Average Overlap (with Standard Deviation): 240.3016805262032 +/- 43.810241781431685
+	* Class 69:
+		> Average Overlap (with Standard Deviation): 223.958293764295 +/- 40.5968668977154
+	* Class 70:
+		> Average Overlap (with Standard Deviation): 245.3017281574144 +/- 43.34542489679879
+	* Class 71:
+		> Average Overlap (with Standard Deviation): 175.95434191236654 +/- 36.9460345753628
+	* Class 72:
+		> Average Overlap (with Standard Deviation): 202.75098580118117 +/- 29.46147132307061
+	* Class 73:
+		> Average Overlap (with Standard Deviation): 182.78540327214355 +/- 34.83926655288637
+	* Class 74:
+		> Average Overlap (with Standard Deviation): 161.3163354587054 +/- 36.388956766462826
+	* Class 75:
+		> Average Overlap (with Standard Deviation): 221.44960391841062 +/- 43.20391310115866
+	* Class 76:
+		> Average Overlap (with Standard Deviation): 329.0063117429443 +/- 43.267073511096434
+	* Class 77:
+		> Average Overlap (with Standard Deviation): 180.2146282224483 +/- 31.02088556484634
+	* Class 78:
+		> Average Overlap (with Standard Deviation): 240.820723324914 +/- 32.21354745898956
+	* Class 79:
+		> Average Overlap (with Standard Deviation): 163.74383366135953 +/- 49.751940563138
+	* Class 80:
+		> Average Overlap (with Standard Deviation): 230.67338096953677 +/- 45.19028899859245
+	* Class 81:
+		> Average Overlap (with Standard Deviation): 220.00979813002624 +/- 34.27823193059169
+	* Class 82:
+		> Average Overlap (with Standard Deviation): 162.17098812082503 +/- 26.935028668911528
+	* Class 83:
+		> Average Overlap (with Standard Deviation): 98.10759461713809 +/- 37.36468783443399
+	* Class 84:
+		> Average Overlap (with Standard Deviation): 239.25070897065984 +/- 36.11187921693607
+	* Class 85:
+		> Average Overlap (with Standard Deviation): 232.15451796758447 +/- 34.57349913123461
+	* Class 86:
+		> Average Overlap (with Standard Deviation): 234.4103457390302 +/- 63.053182776117964
+	* Class 87:
+		> Average Overlap (with Standard Deviation): 202.91869717232507 +/- 41.79374017764492
+	* Class 88:
+		> Average Overlap (with Standard Deviation): 192.50964236308548 +/- 27.958416831407543
+	* Class 89:
+		> Average Overlap (with Standard Deviation): 183.83969887396484 +/- 36.36588142649107
+	* Class 90:
+		> Average Overlap (with Standard Deviation): 89.56342495146599 +/- 20.95276327254432
+	* Class 91:
+		> Average Overlap (with Standard Deviation): 231.80818047582187 +/- 32.11411022416297
+	* Class 92:
+		> Average Overlap (with Standard Deviation): 248.7357253891537 +/- 26.58249381374163
+	* Class 93:
+		> Average Overlap (with Standard Deviation): 199.09196518558838 +/- 37.756658561541485
+	* Class 94:
+		> Average Overlap (with Standard Deviation): 194.6012901729774 +/- 36.84109457934546
+	* Class 95:
+		> Average Overlap (with Standard Deviation): 185.83772793866802 +/- 28.86445511652186
+	* Class 96:
+		> Average Overlap (with Standard Deviation): 255.28441098527978 +/- 27.347140247039494
+	* Class 97:
+		> Average Overlap (with Standard Deviation): 258.8944656977802 +/- 40.06878502920928
+	* Class 98:
+		> Average Overlap (with Standard Deviation): 232.6685884434567 +/- 35.61352126782524
+	* Class 99:
+		> Average Overlap (with Standard Deviation): 215.795709319641 +/- 29.003379295993685

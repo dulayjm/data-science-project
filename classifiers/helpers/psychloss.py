@@ -1,5 +1,6 @@
-import torch
 import numpy as np
+import torch
+
 
 def PsychCrossEntropyLoss(outputs, targets, psych):
     num_examples = targets.shape[0]
